@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotations.Version;
 
+import com.lwj.study.mybatisplus.constant.DeleteEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -65,7 +66,7 @@ public class User extends Model<User> {
      */
 	@TableField(value = "is_delete",fill = FieldFill.INSERT)
 	@TableLogic
-	private Integer isDelete;
+	private DeleteEnum isDelete;
 
 
 	@Override

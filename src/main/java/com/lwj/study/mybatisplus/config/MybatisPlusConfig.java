@@ -27,21 +27,38 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MybatisPlusConfig {
 
 
+    /**
+     * 默认字段自定义填充
+     * @return
+     */
     @Bean
     public MyMetaObjectHandler myMetaObjectHandler(){
         return new MyMetaObjectHandler();
     }
 
 
+    /**
+     * 默认字段自定义填充及逻辑删除
+     * @param myMetaObjectHandler
+     * @return
+     */
     @Bean
     public GlobalConfiguration globalConfiguration(@Autowired MyMetaObjectHandler myMetaObjectHandler){
         GlobalConfiguration globalConfiguration = new GlobalConfiguration(new LogicSqlInjector());
         globalConfiguration.setMetaObjectHandler(myMetaObjectHandler);
+        //默认删除值
         globalConfiguration.setLogicDeleteValue("1");
+        //默认有效值
         globalConfiguration.setLogicNotDeleteValue("0");
         return globalConfiguration;
      }
 
+    /**
+     * 全局配置
+     * @param dataSource
+     * @param globalConfiguration
+     * @return
+     */
      @Bean
      public MybatisSqlSessionFactoryBean mybatisSqlSessionFactoryBean(@Autowired DruidDataSource dataSource,@Autowired GlobalConfiguration globalConfiguration){
          MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
