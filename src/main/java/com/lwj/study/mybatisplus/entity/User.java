@@ -2,6 +2,8 @@ package com.lwj.study.mybatisplus.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -50,17 +52,19 @@ public class User extends Model<User> {
     /**
      * 创建时间
      */
-	@TableField("create_time")
+	@TableField(value = "create_time",fill = FieldFill.INSERT)
 	private Long createTime;
     /**
      * 最后修改时间
      */
-	@TableField("last_modify_time")
+    @Version
+	@TableField(value = "last_modify_time",fill = FieldFill.INSERT_UPDATE)
 	private Long lastModifyTime;
     /**
      * 是否删除
      */
-	@TableField("is_delete")
+	@TableField(value = "is_delete",fill = FieldFill.INSERT)
+	@TableLogic
 	private Integer isDelete;
 
 
