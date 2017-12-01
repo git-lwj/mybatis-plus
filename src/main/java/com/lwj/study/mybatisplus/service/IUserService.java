@@ -1,5 +1,6 @@
 package com.lwj.study.mybatisplus.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.lwj.study.mybatisplus.entity.User;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2017-11-26
  */
 public interface IUserService extends IService<User> {
+
+    Page<User> searchByCondition();
 	
 }

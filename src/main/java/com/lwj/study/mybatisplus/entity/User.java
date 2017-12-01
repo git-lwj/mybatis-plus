@@ -1,20 +1,17 @@
 package com.lwj.study.mybatisplus.entity;
 
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.annotations.Version;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotations.Version;
-
-import com.lwj.study.mybatisplus.constant.DeleteEnum;
+import com.lwj.study.mybatisplus.constant.EnableEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -59,14 +56,17 @@ public class User extends Model<User> {
      * 最后修改时间
      */
     @Version
-	@TableField(value = "last_modify_time",fill = FieldFill.INSERT_UPDATE)
+	@TableField(value = "last_modify_time")
 	private Long lastModifyTime;
     /**
      * 是否删除
      */
 	@TableField(value = "is_delete",fill = FieldFill.INSERT)
 	@TableLogic
-	private DeleteEnum isDelete;
+	private Integer isDelete;
+
+	@TableField(value = "is_enable")
+	private EnableEnum isEnable;
 
 
 	@Override
